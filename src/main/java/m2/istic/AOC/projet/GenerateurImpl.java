@@ -42,4 +42,8 @@ public class GenerateurImpl implements Generateur {
 		return getV();
 	}
 
+	@Override
+	public void generateValue() {
+		setV((int) (System.currentTimeMillis() / 1000L)); // 2038 problem :p
+	}
 }
