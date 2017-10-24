@@ -1,9 +1,13 @@
 package m2.istic.AOC.projet;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Canal implements Generateur, ObservateurGenerateur {
 
 	Generateur generateur;
 	Afficheur afficheur;
+	Set<Observer<Generateur>> observers = new HashSet<Observer<Generateur>>();
 	
 	public Canal() {
 		super();
@@ -39,15 +43,21 @@ public class Canal implements Generateur, ObservateurGenerateur {
 		return generateur.getValue();
 	}
 
-	/* Unused methods */ 
-	
-	@Override
-	public void notifyObservers() {}
-	
-	public void attach(Observer<Generateur> o) {}
+	public void attach(Observer<Generateur> o) {
+		observers.add(o);
+	}
 
-	public void detach(Observer<Generateur> o) {}
+	public void detach(Observer<Generateur> o) {
+		observers.remove(o);
+	}
+
+	@Override
+	public void notifyObservers() {
+		observers.forEach(o -> o.update(this));
+	}
 	
 	@Override
-	public void generateValue() {}
+	public void generateValue() {
+		generateur.generateValue();
+	}
 }
