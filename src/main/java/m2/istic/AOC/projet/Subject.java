@@ -1,7 +1,8 @@
 package m2.istic.AOC.projet;
 
-public interface Subject {
+public interface Subject<T> {
 
-	public void attach(Observer<?> o);
-	public void detach(Observer<?> o);
+	public void attach(Observer<T> o);
+	public void detach(Observer<T> o);
+	public void notifyObservers();
 }

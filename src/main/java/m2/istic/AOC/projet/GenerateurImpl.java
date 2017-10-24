@@ -1,8 +1,11 @@
 package m2.istic.AOC.projet;
 
-public class GenerateurImpl implements Generateur{
+import java.util.*;
+
+public class GenerateurImpl implements Generateur {
 
 	Integer v;
+	Set<Observer<Generateur>> observers = new HashSet<Observer<Generateur>>();
 	
 	public GenerateurImpl() {
 		super();
@@ -19,16 +22,20 @@ public class GenerateurImpl implements Generateur{
 
 	public void setV(Integer v) {
 		this.v = v;
+		notifyObservers();
 	}
 
-	public void attach(Observer<?> o) {
-		// TODO Auto-generated method stub
-		
+	public void attach(Observer<Generateur> o) {
+		observers.add(o);
 	}
 
-	public void detach(Observer<?> o) {
-		// TODO Auto-generated method stub
-		
+	public void detach(Observer<Generateur> o) {
+		observers.remove(o);
+	}
+
+	@Override
+	public void notifyObservers() {
+		observers.forEach(o -> o.update(this));
 	}
 
 	public Integer getValue() {
