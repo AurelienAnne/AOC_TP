@@ -2,31 +2,52 @@ package m2.istic.AOC.projet;
 
 public class Canal implements Generateur, ObservateurGenerateur {
 
-	public void attach(Observer<Generateur> o) {
-		// TODO Auto-generated method stub
-		
+	Generateur generateur;
+	Afficheur afficheur;
+	
+	public Canal() {
+		super();
 	}
 
-	public void detach(Observer<Generateur> o) {
-		// TODO Auto-generated method stub
-		
+	public Canal(Generateur generateur, Afficheur afficheur) {
+		super();
+		this.generateur = generateur;
+		this.afficheur = afficheur;
 	}
 
-	@Override
-	public void notifyObservers() {
+	public Generateur getGenerateur() {
+		return generateur;
+	}
 
+	public void setGenerateur(Generateur generateur) {
+		this.generateur = generateur;
+	}
+
+	public Afficheur getAfficheur() {
+		return afficheur;
+	}
+
+	public void setAfficheur(Afficheur afficheur) {
+		this.afficheur = afficheur;
 	}
 
 	public void update(Generateur subject) {
-		// TODO Auto-generated method stub
-		
+		afficheur.update(subject);
 	}
 
 	public Integer getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return generateur.getValue();
 	}
 
+	/* Unused methods */ 
+	
+	@Override
+	public void notifyObservers() {}
+	
+	public void attach(Observer<Generateur> o) {}
+
+	public void detach(Observer<Generateur> o) {}
+	
 	@Override
 	public void generateValue() {}
 }

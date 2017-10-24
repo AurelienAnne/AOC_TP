@@ -6,5 +6,4 @@ public class Afficheur implements ObservateurGenerateur{
 		System.out.println(subject.getValue());
 	}
 
-
 }
