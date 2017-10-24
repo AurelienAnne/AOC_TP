@@ -2,21 +2,24 @@ package m2.istic.AOC.projet;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class Canal implements Generateur, ObservateurGenerateur {
 
 	Generateur generateur;
 	Afficheur afficheur;
+	ScheduledExecutorService scheduler;
 	Set<Observer<Generateur>> observers = new HashSet<Observer<Generateur>>();
 	
 	public Canal() {
 		super();
 	}
 
-	public Canal(Generateur generateur, Afficheur afficheur) {
+	public Canal(Generateur generateur, Afficheur afficheur, ScheduledExecutorService scheduler) {
 		super();
 		this.generateur = generateur;
 		this.afficheur = afficheur;
+		this.scheduler = scheduler;
 	}
 
 	public Generateur getGenerateur() {
