@@ -2,7 +2,7 @@ package m2.istic.AOC.projet;
 
 import java.util.concurrent.*;
 
-public class GetValue implements Callable<Future<Integer>>{
+public class GetValue implements Callable<Integer>{
 
     private Generateur generateur;
 
@@ -11,8 +11,7 @@ public class GetValue implements Callable<Future<Integer>>{
     }
 
     @Override
-    public Future<Integer> call() throws Exception {
-        // return generateur.getValue();
-        return null; // TODO
+    public Integer call() throws Exception {
+        return generateur.getValue();
     }
 }
