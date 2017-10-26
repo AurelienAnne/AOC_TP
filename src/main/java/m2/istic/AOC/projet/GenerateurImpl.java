@@ -1,11 +1,14 @@
 package m2.istic.AOC.projet;
 
+import m2.istic.AOC.projet.observer.Observer;
+import m2.istic.AOC.projet.observer.ObserverAsync;
+
 import java.util.*;
 
 public class GenerateurImpl implements Generateur {
 
 	Integer v;
-	Set<Observer<Generateur>> observers = new HashSet<Observer<Generateur>>();
+	Set<ObserverAsync<Generateur>> observers = new HashSet<ObserverAsync<Generateur>>();
 	
 	public GenerateurImpl() {
 		super();
@@ -25,11 +28,11 @@ public class GenerateurImpl implements Generateur {
 		notifyObservers();
 	}
 
-	public void attach(Observer<Generateur> o) {
+	public void attach(ObserverAsync<Generateur> o) {
 		observers.add(o);
 	}
 
-	public void detach(Observer<Generateur> o) {
+	public void detach(ObserverAsync<Generateur> o) {
 		observers.remove(o);
 	}
 

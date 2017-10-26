@@ -1,4 +1,4 @@
-package m2.istic.AOC.projet;
+package m2.istic.AOC.projet.observer;
 
 public interface Observer<T> {
 

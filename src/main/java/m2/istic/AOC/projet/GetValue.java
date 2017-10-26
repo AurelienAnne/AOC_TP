@@ -1,18 +1,18 @@
 package m2.istic.AOC.projet;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class GetValue implements Callable<Future<Integer>>{
 
-    private GenerateurAsync generateur;
+    private Generateur generateur;
 
-    public GetValue(GenerateurAsync generateur) {
+    public GetValue(Generateur generateur) {
         this.generateur = generateur;
     }
 
     @Override
     public Future<Integer> call() throws Exception {
-        return generateur.getValue();
+        // return generateur.getValue();
+        return null; // TODO
     }
 }

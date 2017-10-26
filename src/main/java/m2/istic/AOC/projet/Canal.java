@@ -1,15 +1,18 @@
 package m2.istic.AOC.projet;
 
+import m2.istic.AOC.projet.observer.ObserverAsync;
+
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class Canal implements Generateur, ObservateurGenerateur {
+public class Canal implements GenerateurAsync, ObservaterGenerateur {
 
 	Generateur generateur;
 	Afficheur afficheur;
 	ScheduledExecutorService scheduler;
-	Set<Observer<Generateur>> observers = new HashSet<Observer<Generateur>>();
+	Set<ObserverAsync<GenerateurAsync>> observers = new HashSet<>();
 	
 	public Canal() {
 		super();
@@ -42,15 +45,16 @@ public class Canal implements Generateur, ObservateurGenerateur {
 		afficheur.update(subject);
 	}
 
-	public Integer getValue() {
-		return generateur.getValue();
+	public Future<Integer> getValue() {
+		new GetValue(generateur);
+		return null; // TODO
 	}
 
-	public void attach(Observer<Generateur> o) {
+	public void attach(ObserverAsync<GenerateurAsync> o) {
 		observers.add(o);
 	}
 
-	public void detach(Observer<Generateur> o) {
+	public void detach(ObserverAsync<GenerateurAsync> o) {
 		observers.remove(o);
 	}
 
