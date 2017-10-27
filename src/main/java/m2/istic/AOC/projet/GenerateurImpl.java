@@ -2,6 +2,7 @@ package m2.istic.AOC.projet;
 
 import m2.istic.AOC.projet.observer.Observer;
 import m2.istic.AOC.projet.observer.ObserverAsync;
+import m2.istic.AOC.projet.strategy.AlgoDiffusion;
 
 import java.util.*;
 
@@ -9,12 +10,13 @@ public class GenerateurImpl implements Generateur {
 
 	Integer v;
 	Set<ObserverAsync<Generateur>> observers = new HashSet<ObserverAsync<Generateur>>();
+	AlgoDiffusion algo;
 	
 	public GenerateurImpl() {
 		super();
 	}
 
-	public GenerateurImpl(Integer v) {
+	public GenerateurImpl(Integer v, AlgoDiffusion algo) {
 		super();
 		this.v = v;
 	}
