@@ -7,6 +7,10 @@ import m2.istic.AOC.projet.strategy.SequentialDiffusion;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
+import javafx.stage.*;
 
 import static java.lang.Thread.sleep;
 
@@ -14,7 +18,7 @@ import static java.lang.Thread.sleep;
  * Hello world!
  *
  */
-public class App 
+public class App extends Application
 {
     public static void main( String[] args ) throws InterruptedException {
 
@@ -30,9 +34,19 @@ public class App
         }
         algo.configure(generateur);
 
-        while(true) {
+        while (true) {
             generateur.generateValue();
             sleep(1000);
         }
+    }
+
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI.fxml"));
+
+        Scene scene = new Scene(root, 800, 600);
+
+        primaryStage.setTitle("AOC");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
