@@ -19,6 +19,7 @@ public class GenerateurImpl implements Generateur {
 	public GenerateurImpl(Integer v, AlgoDiffusion algo) {
 		super();
 		this.v = v;
+		this.algo = algo;
 	}
 
 	public Integer getV() {
@@ -40,7 +41,7 @@ public class GenerateurImpl implements Generateur {
 
 	@Override
 	public void notifyObservers() {
-		observers.forEach(o -> o.update(this));
+		algo.execute();
 	}
 
 	public Integer getValue() {
@@ -50,5 +51,10 @@ public class GenerateurImpl implements Generateur {
 	@Override
 	public void generateValue() {
 		setV((int) (System.currentTimeMillis() / 1000L)); // 2038 problem :p
+	}
+
+	@Override
+	public Set<ObserverAsync<Generateur>> getObservers() {
+		return observers;
 	}
 }

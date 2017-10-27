@@ -47,4 +47,9 @@ public class Canal implements GenerateurAsync, ObserverAsync<Generateur>, Subjec
 	public void generateValue() {
 		generateur.generateValue();
 	}
+
+	@Override
+	public Set<Observer<GenerateurAsync>> getObservers() {
+		return observers;
+	}
 }

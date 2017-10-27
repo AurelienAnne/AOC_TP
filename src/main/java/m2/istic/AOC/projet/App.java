@@ -4,6 +4,7 @@ import m2.istic.AOC.projet.observer.Observer;
 import m2.istic.AOC.projet.observer.ObserverAsync;
 import m2.istic.AOC.projet.strategy.AlgoDiffusion;
 import m2.istic.AOC.projet.strategy.AtomicDiffusion;
+import m2.istic.AOC.projet.strategy.BasicDiffusion;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,8 +17,9 @@ public class App
 {
     public static void main( String[] args ) {
         Observer<GenerateurAsync> afficheur = new Afficheur();
-        AlgoDiffusion algo = new AtomicDiffusion();
+        AlgoDiffusion algo = new BasicDiffusion();
         Generateur generateur = new GenerateurImpl(0, algo);
+        algo.configure(generateur);
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         Canal canal  = new Canal(generateur, afficheur, scheduler);
 
