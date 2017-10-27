@@ -28,10 +28,10 @@ public class App
         Observer<GenerateurAsync> afficheur4 = new Afficheur();
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
-        Canal canal1  = new Canal(generateur, afficheur1, scheduler);
-        Canal canal2  = new Canal(generateur, afficheur2, scheduler);
-        Canal canal3  = new Canal(generateur, afficheur3, scheduler);
-        Canal canal4  = new Canal(generateur, afficheur4, scheduler);
+        Canal canal1  = new Canal(generateur, afficheur1, scheduler, 0);
+        Canal canal2  = new Canal(generateur, afficheur2, scheduler, 500);
+        Canal canal3  = new Canal(generateur, afficheur3, scheduler, 1000);
+        Canal canal4  = new Canal(generateur, afficheur4, scheduler, 2000);
 
         generateur.attach(canal1);
         generateur.attach(canal2);

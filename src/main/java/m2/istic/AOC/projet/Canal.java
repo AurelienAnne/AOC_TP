@@ -15,13 +15,15 @@ public class Canal implements GenerateurAsync, ObserverAsync<Generateur>, Subjec
 	Generateur generateur;
 	Observer<GenerateurAsync> afficheur;
 	ScheduledExecutorService scheduler;
+	int delay;
 	Set<Observer<GenerateurAsync>> observers = new HashSet<>();
 
-	public Canal(Generateur generateur, Observer<GenerateurAsync> afficheur, ScheduledExecutorService scheduler) {
+	public Canal(Generateur generateur, Observer<GenerateurAsync> afficheur, ScheduledExecutorService scheduler, int delay) {
 		super();
 		this.generateur = generateur;
 		this.afficheur = afficheur;
 		this.scheduler = scheduler;
+		this.delay = delay;
 	}
 
 	public Generateur getGenerateur() { return generateur; }
@@ -31,7 +33,7 @@ public class Canal implements GenerateurAsync, ObserverAsync<Generateur>, Subjec
 
 	public Future<Void> update(Generateur subject) {
 		System.out.println("Update asynchrone");
-		return scheduler.schedule(new Update(afficheur, this), 1000, TimeUnit.MILLISECONDS);
+		return scheduler.schedule(new Update(afficheur, this), 10, TimeUnit.MILLISECONDS);
 	}
 
 	public void attach(Observer<GenerateurAsync> o) { observers.add(o); }
@@ -40,7 +42,7 @@ public class Canal implements GenerateurAsync, ObserverAsync<Generateur>, Subjec
 
 	public Future<Integer> getValue() {
 		System.out.println("GetValue asynchrone");
-		return scheduler.schedule(new GetValue(generateur), 1000, TimeUnit.MILLISECONDS);
+		return scheduler.schedule(new GetValue(generateur), delay, TimeUnit.MILLISECONDS);
 	}
 
 	@Override
