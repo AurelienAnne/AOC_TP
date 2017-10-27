@@ -7,12 +7,16 @@ import m2.istic.AOC.projet.strategy.SequentialDiffusion;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.*;
+import javafx.stage.*;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class App extends Application
 {
     public static void main( String[] args ) {
 
@@ -43,5 +47,18 @@ public class App
         canal4.attach(afficheur4);
 
         generateur.generateValue();
+
+        Application.launch(App.class, args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI.fxml"));
+
+        Scene scene = new Scene(root, 800, 600);
+
+        primaryStage.setTitle("AOC");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
