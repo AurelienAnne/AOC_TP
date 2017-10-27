@@ -18,10 +18,9 @@ public class App
     public static void main( String[] args ) {
 
         Observer<GenerateurAsync> afficheur = new Afficheur();
-        AlgoDiffusion algo = new BasicDiffusion();
+        AlgoDiffusion algo = new AtomicDiffusion();
         Generateur generateur = new GenerateurImpl(0, algo);
         algo.configure(generateur);
-
 
         Observer<GenerateurAsync> afficheur1 = new Afficheur();
         Observer<GenerateurAsync> afficheur2 = new Afficheur();
