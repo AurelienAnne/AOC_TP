@@ -8,13 +8,15 @@ import m2.istic.AOC.projet.strategy.SequentialDiffusion;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Hello world!
  *
  */
 public class App 
 {
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws InterruptedException {
 
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
         AlgoDiffusion algo = new SequentialDiffusion();
@@ -26,9 +28,11 @@ public class App
             generateur.attach(canal);
             canal.attach(afficheur);
         }
-
         algo.configure(generateur);
 
-        generateur.generateValue();
+        while(true) {
+            generateur.generateValue();
+            sleep(1000);
+        }
     }
 }
