@@ -2,15 +2,15 @@ package m2.istic.AOC.projet.numberingStrategy;
 
 public class IncrementStrategy implements NumberingStrategy {
 
-    private Integer increment = 0;
+    private IncrementContext context;
 
     @Override
-    public void configure() {
-
+    public void configure(IncrementContext context) {
+        this.context = context;
     }
 
     @Override
     public Integer execute() {
-        return increment++;
+        return context.getCounter();
     }
 }

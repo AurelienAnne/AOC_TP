@@ -2,7 +2,7 @@ package m2.istic.AOC.projet.numberingStrategy;
 
 public class TimestampStrategy implements NumberingStrategy {
     @Override
-    public void configure() {
+    public void configure(IncrementContext context) {
 
     }
 

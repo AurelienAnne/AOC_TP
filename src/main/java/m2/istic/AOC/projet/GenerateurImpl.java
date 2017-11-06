@@ -1,17 +1,19 @@
 package m2.istic.AOC.projet;
 
+import m2.istic.AOC.projet.numberingStrategy.IncrementContext;
 import m2.istic.AOC.projet.numberingStrategy.NumberingStrategy;
 import m2.istic.AOC.projet.observer.ObserverAsync;
 import m2.istic.AOC.projet.algoStrategy.AlgoDiffusion;
 
 import java.util.*;
 
-public class GenerateurImpl implements Generateur {
+public class GenerateurImpl implements Generateur, IncrementContext {
 
 	Integer v;
 	Set<ObserverAsync<Generateur>> observers = new HashSet<ObserverAsync<Generateur>>();
 	AlgoDiffusion algo;
 	NumberingStrategy numbering;
+	Integer counter = 0;
 
 	public GenerateurImpl(Integer v, AlgoDiffusion algo) {
 		super();
@@ -36,6 +38,16 @@ public class GenerateurImpl implements Generateur {
 		this.numbering = numbering;
 	}
 
+	@Override
+	public void increment() {
+		this.counter++;
+	}
+
+	@Override
+	public Integer getCounter() {
+		return this.counter;
+	}
+
 	public void attach(ObserverAsync<Generateur> o) {
 		observers.add(o);
 	}
@@ -55,6 +67,7 @@ public class GenerateurImpl implements Generateur {
 
 	@Override
 	public void generateValue() {
+		increment();
 		setV(numbering.execute());
 	}
 
