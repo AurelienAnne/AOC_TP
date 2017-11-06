@@ -5,13 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import m2.istic.AOC.projet.numberingStrategy.IncrementStrategy;
 import m2.istic.AOC.projet.observer.Observer;
-import m2.istic.AOC.projet.strategy.AlgoDiffusion;
-import m2.istic.AOC.projet.strategy.AtomicDiffusion;
-import m2.istic.AOC.projet.strategy.SequentialDiffusion;
+import m2.istic.AOC.projet.algoStrategy.AlgoDiffusion;
+import m2.istic.AOC.projet.algoStrategy.AtomicDiffusion;
+import m2.istic.AOC.projet.algoStrategy.SequentialDiffusion;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import javafx.application.Application;
@@ -43,6 +42,7 @@ public class App extends Application
         scheduler = Executors.newScheduledThreadPool(10);
         algo = new AtomicDiffusion();
         generateur = new GenerateurImpl(0, algo);
+        generateur.setNumbering(new IncrementStrategy());
         displays = new TextArea[4];
 
         launch(args);

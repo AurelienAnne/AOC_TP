@@ -1,4 +1,4 @@
-package m2.istic.AOC.projet.strategy;
+package m2.istic.AOC.projet.algoStrategy;
 
 import m2.istic.AOC.projet.Generateur;
 

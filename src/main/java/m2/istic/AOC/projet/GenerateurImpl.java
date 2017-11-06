@@ -1,8 +1,8 @@
 package m2.istic.AOC.projet;
 
-import m2.istic.AOC.projet.observer.Observer;
+import m2.istic.AOC.projet.numberingStrategy.NumberingStrategy;
 import m2.istic.AOC.projet.observer.ObserverAsync;
-import m2.istic.AOC.projet.strategy.AlgoDiffusion;
+import m2.istic.AOC.projet.algoStrategy.AlgoDiffusion;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ public class GenerateurImpl implements Generateur {
 	Integer v;
 	Set<ObserverAsync<Generateur>> observers = new HashSet<ObserverAsync<Generateur>>();
 	AlgoDiffusion algo;
-	int compteur = 0;
+	NumberingStrategy numbering;
 
 	public GenerateurImpl(Integer v, AlgoDiffusion algo) {
 		super();
@@ -32,6 +32,9 @@ public class GenerateurImpl implements Generateur {
 		this.algo = algo;
 	}
 
+	public void setNumbering(NumberingStrategy numbering) {
+		this.numbering = numbering;
+	}
 
 	public void attach(ObserverAsync<Generateur> o) {
 		observers.add(o);
@@ -52,7 +55,7 @@ public class GenerateurImpl implements Generateur {
 
 	@Override
 	public void generateValue() {
-		setV( (compteur++));
+		setV(numbering.execute());
 	}
 
 	@Override
