@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import m2.istic.AOC.projet.numberingStrategy.IncrementStrategy;
+import m2.istic.AOC.projet.numberingStrategy.NumberingStrategy;
 import m2.istic.AOC.projet.numberingStrategy.TimestampStrategy;
 import m2.istic.AOC.projet.observer.Observer;
 import m2.istic.AOC.projet.algoStrategy.AlgoDiffusion;
@@ -38,12 +39,15 @@ public class App extends Application
     private Boolean generate;
     static ScheduledExecutorService scheduler;
     static AlgoDiffusion algo;
+    static NumberingStrategy numbering;
 
     public static void main( String[] args ) throws InterruptedException {
         scheduler = Executors.newScheduledThreadPool(10);
         algo = new AtomicDiffusion();
         generateur = new GenerateurImpl(0, algo);
-        generateur.setNumbering(new IncrementStrategy());
+        numbering = new IncrementStrategy();
+        numbering.configure(generateur);
+        generateur.setNumbering(numbering);
         displays = new TextArea[4];
 
         launch(args);
@@ -122,11 +126,15 @@ public class App extends Application
 
     @FXML
     private void setIncrementStrategy(ActionEvent event) {
-        generateur.setNumbering(new IncrementStrategy());
+        numbering = new IncrementStrategy();
+        numbering.configure(generateur);
+        generateur.setNumbering(numbering);
     }
 
     @FXML
     private void setTimestampStrategy(ActionEvent event) {
-        generateur.setNumbering(new TimestampStrategy());
+        numbering = new TimestampStrategy();
+        numbering.configure(generateur);
+        generateur.setNumbering(numbering);
     }
 }

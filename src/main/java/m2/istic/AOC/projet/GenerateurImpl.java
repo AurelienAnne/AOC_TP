@@ -7,7 +7,7 @@ import m2.istic.AOC.projet.algoStrategy.AlgoDiffusion;
 
 import java.util.*;
 
-public class GenerateurImpl implements Generateur, IncrementContext {
+public class GenerateurImpl implements Generateur {
 
 	Integer v;
 	Set<ObserverAsync<Generateur>> observers = new HashSet<ObserverAsync<Generateur>>();
