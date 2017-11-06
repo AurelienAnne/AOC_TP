@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import m2.istic.AOC.projet.numberingStrategy.IncrementStrategy;
+import m2.istic.AOC.projet.numberingStrategy.TimestampStrategy;
 import m2.istic.AOC.projet.observer.Observer;
 import m2.istic.AOC.projet.algoStrategy.AlgoDiffusion;
 import m2.istic.AOC.projet.algoStrategy.AtomicDiffusion;
@@ -117,5 +118,15 @@ public class App extends Application
     private void setSequentielleStrategy(ActionEvent event) {
         algo = new SequentialDiffusion();
         algo.configure(generateur);
+    }
+
+    @FXML
+    private void setIncrementStrategy(ActionEvent event) {
+        generateur.setNumbering(new IncrementStrategy());
+    }
+
+    @FXML
+    private void setTimestampStrategy(ActionEvent event) {
+        generateur.setNumbering(new TimestampStrategy());
     }
 }
