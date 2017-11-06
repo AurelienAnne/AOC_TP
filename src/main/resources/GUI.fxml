@@ -55,11 +55,11 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <RadioButton layoutX="103.0" layoutY="38.0" mnemonicParsing="false" onAction="#setAtomicStrategy" selected="true" text="Atomique">
+            <RadioButton layoutX="290.0" layoutY="52.0" mnemonicParsing="false" onAction="#setAtomicStrategy" selected="true" text="Atomique">
                <toggleGroup>
                   <ToggleGroup fx:id="selection" />
                </toggleGroup></RadioButton>
-            <RadioButton layoutX="445.0" layoutY="38.0" mnemonicParsing="false" onAction="#setSequentielleStrategy" text="Sequentielle" toggleGroup="$selection" />
+            <RadioButton layoutX="466.0" layoutY="52.0" mnemonicParsing="false" onAction="#setSequentielleStrategy" text="Sequentielle" toggleGroup="$selection" />
             <Button layoutX="54.0" layoutY="89.0" mnemonicParsing="false" onAction="#startGenerate" prefHeight="73.0" prefWidth="186.0" text="Start" />
             <Button layoutX="404.0" layoutY="89.0" mnemonicParsing="false" onAction="#stopGenerate" prefHeight="73.0" prefWidth="186.0" text="Stop" />
             <TextArea fx:id="display1" editable="false" layoutX="54.0" layoutY="177.0" prefHeight="81.0" prefWidth="186.0" />
@@ -70,6 +70,14 @@
             <Label layoutX="332.0" layoutY="210.0" text="Afficheur 2" />
             <Label layoutX="240.0" layoutY="300.0" text="Afficheur 3" />
             <Label layoutX="332.0" layoutY="300.0" text="Afficheur 4" />
+            <Label layoutX="53.0" layoutY="53.0" text="Stratégie de génération" />
+            <RadioButton layoutX="290.0" layoutY="22.0" mnemonicParsing="false" onAction="#setIncrementStrategy" selected="true" text="Compteur">
+               <toggleGroup>
+                  <ToggleGroup fx:id="numbering" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="466.0" layoutY="22.0" mnemonicParsing="false" onAction="#setTimestampStrategy" text="Timestamp" toggleGroup="$numbering" />
+            <Label layoutX="53.0" layoutY="23.0" text="Stratégie de numération" />
       </children>
     </AnchorPane>
   </children>
