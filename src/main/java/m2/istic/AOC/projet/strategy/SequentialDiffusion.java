@@ -8,6 +8,7 @@ public class SequentialDiffusion implements AlgoDiffusion {
     @Override
     public void configure(Generateur generateur) {
         this.generateur = generateur;
+        this.generateur.setAlgo(this);
     }
 
     @Override

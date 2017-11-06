@@ -8,10 +8,11 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.151" xmlns:fx="http://javafx.com/fxml/1" fx:controller="m2.istic.AOC.projet.App">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -54,14 +55,17 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <RadioButton layoutX="103.0" layoutY="38.0" mnemonicParsing="false" text="Atomique" />
-            <RadioButton layoutX="445.0" layoutY="38.0" mnemonicParsing="false" text="Sequentielle" />
-            <Button layoutX="54.0" layoutY="89.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="186.0" text="Start" />
-            <Button layoutX="404.0" layoutY="89.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="186.0" text="Stop" />
-            <TextArea layoutX="54.0" layoutY="177.0" prefHeight="81.0" prefWidth="186.0" />
-            <TextArea layoutX="404.0" layoutY="177.0" prefHeight="81.0" prefWidth="186.0" />
-            <TextArea layoutX="54.0" layoutY="267.0" prefHeight="81.0" prefWidth="186.0" />
-            <TextArea layoutX="404.0" layoutY="267.0" prefHeight="81.0" prefWidth="186.0" />
+            <RadioButton layoutX="103.0" layoutY="38.0" mnemonicParsing="false" onAction="#setAtomicStrategy" selected="true" text="Atomique">
+               <toggleGroup>
+                  <ToggleGroup fx:id="selection" />
+               </toggleGroup></RadioButton>
+            <RadioButton layoutX="445.0" layoutY="38.0" mnemonicParsing="false" onAction="#setSequentielleStrategy" text="Sequentielle" toggleGroup="$selection" />
+            <Button layoutX="54.0" layoutY="89.0" mnemonicParsing="false" onAction="#startGenerate" prefHeight="73.0" prefWidth="186.0" text="Start" />
+            <Button layoutX="404.0" layoutY="89.0" mnemonicParsing="false" onAction="#stopGenerate" prefHeight="73.0" prefWidth="186.0" text="Stop" />
+            <TextArea fx:id="display1" editable="false" layoutX="54.0" layoutY="177.0" prefHeight="81.0" prefWidth="186.0" />
+            <TextArea fx:id="display2" editable="false" layoutX="404.0" layoutY="177.0" prefHeight="81.0" prefWidth="186.0" />
+            <TextArea fx:id="display3" editable="false" layoutX="54.0" layoutY="267.0" prefHeight="81.0" prefWidth="186.0" />
+            <TextArea fx:id="display4" editable="false" layoutX="404.0" layoutY="267.0" prefHeight="81.0" prefWidth="186.0" />
             <Label layoutX="240.0" layoutY="210.0" text="Afficheur 1" />
             <Label layoutX="332.0" layoutY="210.0" text="Afficheur 2" />
             <Label layoutX="240.0" layoutY="300.0" text="Afficheur 3" />
