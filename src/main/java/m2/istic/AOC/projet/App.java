@@ -23,24 +23,69 @@ import javafx.stage.*;
 import static java.lang.Thread.sleep;
 
 /**
- * Hello world!
- *
+ * The main application.
+ * Bootstrap everything :
+ *  - Created the different parts.
+ *  - Handle JavaFX execution.
+ *  - Start main loop to generate values.
  */
-public class App extends Application
-{
+public class App extends Application {
+
+    /**
+     * The first display.
+     */
     @FXML private TextArea display1;
+
+    /**
+     * The second display.
+     */
     @FXML private TextArea display2;
+
+    /**
+     * The third display.
+     */
     @FXML private TextArea display3;
+
+    /**
+     * The fourth display.
+     */
     @FXML private TextArea display4;
 
+    /**
+     * All for displays.
+     */
     static private TextArea[] displays;
 
+    /**
+     * The generateur.
+     */
     static Generateur generateur;
+
+    /**
+     * The loop to generate values is running.
+     */
     private Boolean generate;
+
+    /**
+     * The scheduler.
+     */
     static ScheduledExecutorService scheduler;
+
+    /**
+     * The algorithm to update the canal.
+     */
     static AlgoDiffusion algo;
+
+    /**
+     * The algorithm to generate values.
+     */
     static NumberingStrategy numbering;
 
+    /**
+     *
+     * @param args
+     * @throws InterruptedException
+     */
     public static void main( String[] args ) throws InterruptedException {
         scheduler = Executors.newScheduledThreadPool(10);
         algo = new AtomicDiffusion();
@@ -53,6 +98,11 @@ public class App extends Application
         launch(args);
     }
 
+    /**
+     * Set and start JavaFX window.
+     * @param primaryStage
+     * @throws Exception
+     */
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI.fxml"));
 
@@ -72,6 +122,10 @@ public class App extends Application
         primaryStage.show();
     }
 
+    /**
+     * Start main loop in a new thread.
+     * @param event
+     */
     @FXML
     private void startGenerate(ActionEvent event) {
         generate = true;
@@ -89,6 +143,9 @@ public class App extends Application
         }).start();
     }
 
+    /**
+     * Creates the for JavaFX displays and link them to the canals and generator.
+     */
     @FXML
     public void initialize() {
 
@@ -107,23 +164,39 @@ public class App extends Application
         algo.configure(generateur);
     }
 
+    /**
+     * Handle button click to stop the main loop.
+     * @param event
+     */
     @FXML
     private void stopGenerate(ActionEvent event) {
         generate = false;
     }
 
+    /**
+     * Handle the button to change strategy.
+     * @param event
+     */
     @FXML
     private void setAtomicStrategy(ActionEvent event) {
         algo = new AtomicDiffusion();
         algo.configure(generateur);
     }
 
+    /**
+     * Handle the button to change strategy.
+     * @param event
+     */
     @FXML
     private void setSequentielleStrategy(ActionEvent event) {
         algo = new SequentialDiffusion();
         algo.configure(generateur);
     }
 
+    /**
+     * Handle the button to change strategy.
+     * @param event
+     */
     @FXML
     private void setIncrementStrategy(ActionEvent event) {
         numbering = new IncrementStrategy();
@@ -131,6 +204,10 @@ public class App extends Application
         generateur.setNumbering(numbering);
     }
 
+    /**
+     * Handle the button to change strategy.
+     * @param event
+     */
     @FXML
     private void setTimestampStrategy(ActionEvent event) {
         numbering = new TimestampStrategy();

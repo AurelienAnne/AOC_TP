@@ -5,6 +5,10 @@ import m2.istic.AOC.projet.observer.Observer;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
+/**
+ * Ask the generateur to update the canal.
+ * Return a promise of void when completed.
+ */
 public class Update implements Callable<Void> {
 
     private Observer<GenerateurAsync> generateur;
