@@ -31,7 +31,6 @@ public class Afficheur implements Observer<GenerateurAsync> {
 	public void update(GenerateurAsync subject) {
 		try {
 			display.setText(subject.getValue().get().toString());
-		    System.out.println(subject.getValue().get());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
