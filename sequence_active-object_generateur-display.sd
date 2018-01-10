@@ -1,0 +1,25 @@
+main:App
+generateur:Generateur
+algo:AtomicDiffusion
+canal:Canal-ObserverAsync
+scheduler:ScheduledExecutorService
+update:Update
+getValue:GetValue
+afficheur:Afficheur
+display:TextArea
+
+main:generateur.generateValue()
+generateur:generateur.increment()
+generateur[1]:generateur.setV()
+generateur:generateur.notifyObservers()
+generateur:algo.excute()
+algo:observers=generateur.getObservers()
+algo:update=canal.update(generateur)
+canal:future=scheduler.schedule(new Update())
+algo:update.get()
+update:afficheur.update(canal)
+afficheur:future=canal.getValue()
+canal:future=scheduler.schedule(new GetValue(generateur))
+afficheur:getValue.get()
+getValue:generateur.getValue()
+afficheur:display.setText(text)
